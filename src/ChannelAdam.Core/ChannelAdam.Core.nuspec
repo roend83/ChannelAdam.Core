@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>ChannelAdam.Core</id>
+    <version>$version$</version>
+    <authors>Adam Craven</authors>
+    <owners>Adam Craven</owners>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://channeladamcore.codeplex.com</projectUrl>
+    <iconUrl>https://devzone.channeladam.com/img/channeladam/channeladam-logo.png</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>https://DevZone.ChannelAdam.com presents a library that provides some core helpful functionality, such as base classes for disposables and finalizers, weak events, and in-proc real proxies.</description>
+    <releaseNotes>Initial release.</releaseNotes>
+    <copyright>Copyright 2014 Adam Craven</copyright>
+    <tags>Disposable WeakEvent RealProxy</tags>
+  </metadata>
+</package>
