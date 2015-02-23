@@ -14,13 +14,13 @@
     <releaseNotes>
 1.1.0 - Added support for targeting .NET Framework 4.0 in addition to .NET Framework 4.5.
 1.0.0 - Initial release targeting .NET Framework 4.5.
-	</releaseNotes>
+    </releaseNotes>
     <copyright>Copyright 2014-2015 Adam Craven</copyright>
     <tags>Disposable WeakEvent RealProxy</tags>
   </metadata>
   <files>
     <file src="bin\Release\**\ChannelAdam.Core.dll" target="lib" />
-	<file src="bin\Release\**\ChannelAdam.Core.pdb" target="lib" />
-	<file src="**\*.cs" exclude="obj\**\*;bin\**\*" target="src" />
+    <file src="bin\Release\**\ChannelAdam.Core.pdb" target="lib" />
+    <file src="**\*.cs" exclude="obj\**\*;bin\**\*" target="src" />
   </files>
 </package>
