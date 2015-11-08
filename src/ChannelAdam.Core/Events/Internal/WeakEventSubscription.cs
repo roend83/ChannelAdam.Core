@@ -18,7 +18,6 @@
 namespace ChannelAdam.Events.Internal
 {
     using System;
-    using System.Reflection;
 
     /// <summary>
     /// A delegate method to unsubscribe from an event.
@@ -65,7 +64,7 @@ namespace ChannelAdam.Events.Internal
         {
             if (eventHandler == null)
             {
-                throw new ArgumentNullException("eventHandler");
+                throw new ArgumentNullException(nameof(eventHandler));
             }
 
             // Hold a weak reference to the target of the event handler - not the event handler itself, which would cause a strong reference.
@@ -155,7 +154,7 @@ namespace ChannelAdam.Events.Internal
 
         private void InvokeEventHandler(object sender, TEventArgs e)
         {
-            TDelegateInstanceObject instanceObject = this.weakReferenceToEventHandlerTarget.Target as TDelegateInstanceObject;
+            var instanceObject = this.weakReferenceToEventHandlerTarget.Target as TDelegateInstanceObject;
 
             if (instanceObject != null)
             {

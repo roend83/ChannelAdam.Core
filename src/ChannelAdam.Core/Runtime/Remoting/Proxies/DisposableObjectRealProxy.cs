@@ -54,7 +54,7 @@ namespace ChannelAdam.Runtime.Remoting.Proxies
 
             if (methodCallMessage == null)
             {
-                throw new ArgumentNullException("methodCallMessage");
+                throw new ArgumentNullException(nameof(methodCallMessage));
             }
 
             var methodInfo = (MethodInfo)methodCallMessage.MethodBase;

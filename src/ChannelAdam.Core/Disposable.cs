@@ -18,7 +18,7 @@
 namespace ChannelAdam
 {
     using System;
-    
+
     /// <summary>
     /// Abstract class for implementing the Dispose pattern.
     /// </summary>

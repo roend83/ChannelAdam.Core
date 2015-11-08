@@ -40,7 +40,7 @@ namespace ChannelAdam.Events
     /// </remarks>
     public class WeakEvent<TEventArgs> : IWeakEvent<TEventArgs> where TEventArgs : EventArgs
     {
-        private object syncRoot = new object();
+        private readonly object syncRoot = new object();
 
         private Dictionary<string, IWeakEventSubscription<TEventArgs>> weakEventSubscriptions = new Dictionary<string, IWeakEventSubscription<TEventArgs>>();
         private EventHandler<TEventArgs> myEventHandler;
@@ -61,7 +61,7 @@ namespace ChannelAdam.Events
                     }
 
                     IWeakEventSubscription<TEventArgs> weakEventHandler = WeakEventSubscriptionFactory.Create<TEventArgs>(value, (args) => this.Unsubscribe(args));
-                    
+
                     this.weakEventSubscriptions.Add(key, weakEventHandler);
                     this.myEventHandler += weakEventHandler.EventHandler;
                 }
@@ -110,7 +110,7 @@ namespace ChannelAdam.Events
         #endregion
 
         #region Public Methods
-        
+
         /// <summary>
         /// An alternative to the explicit operator for converting from <see cref="WeakEvent{TEventArgs}"/> to <see cref="EventHandler{TEventArgs}"/>.
         /// </summary>
@@ -155,9 +155,9 @@ namespace ChannelAdam.Events
         {
             EventHandler<TEventArgs> handler;
 
-            lock (this.syncRoot) 
-            { 
-                handler = this.myEventHandler; 
+            lock (this.syncRoot)
+            {
+                handler = this.myEventHandler;
             }
 
             if (handler != null)

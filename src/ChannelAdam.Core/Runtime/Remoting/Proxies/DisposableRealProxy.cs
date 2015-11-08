@@ -56,7 +56,7 @@ namespace ChannelAdam.Runtime.Remoting.Proxies
         {
             this.typeToProxy = typeToProxy;
         }
-         
+
         #endregion
 
         #region Destructor
@@ -186,8 +186,8 @@ namespace ChannelAdam.Runtime.Remoting.Proxies
                 return false;
             }
 
-            return fromType == this.typeToProxy || 
-                   fromType == typeof(IDisposable) || 
+            return fromType == this.typeToProxy ||
+                   fromType == typeof(IDisposable) ||
                    fromType.IsInstanceOfType(this.ProxiedObject);
         }
 
@@ -217,7 +217,7 @@ namespace ChannelAdam.Runtime.Remoting.Proxies
                 }
 
                 object result = null;
-                
+
                 if (methodCallMessage.MethodName == "Dispose")
                 {
                     result = this.InvokeMethod(methodCallMessage, this);

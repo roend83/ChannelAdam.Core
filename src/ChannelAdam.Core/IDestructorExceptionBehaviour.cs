@@ -18,7 +18,7 @@
 namespace ChannelAdam
 {
     using System;
-    
+
     /// <summary>
     /// Interface for a class that performs an action if there is an exception during a Destructor.
     /// </summary>

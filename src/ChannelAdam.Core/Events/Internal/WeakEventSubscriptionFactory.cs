@@ -46,12 +46,12 @@ namespace ChannelAdam.Events.Internal
         {
             if (eventHandler == null)
             {
-                throw new ArgumentNullException("eventHandler");
+                throw new ArgumentNullException(nameof(eventHandler));
             }
 
             if (eventHandler.Method.IsStatic || eventHandler.Target == null)
             {
-                throw new ArgumentException("A WeakEventSubscription can only be created on instance methods.", "eventHandler");
+                throw new ArgumentException("A WeakEventSubscription can only be created on instance methods.", nameof(eventHandler));
             }
 
             IWeakEventSubscription<TEventArgs> weakEventSubscription = CreateWeakEventSubscription<TEventArgs>(eventHandler, unsubscribeFromEventDelegate);

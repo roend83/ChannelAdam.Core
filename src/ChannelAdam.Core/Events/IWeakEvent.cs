@@ -18,7 +18,7 @@
 namespace ChannelAdam.Events
 {
     using System;
-    
+
     /// <summary>
     /// Interface for an event that enforces a weak reference to the event handler.
     /// </summary>
