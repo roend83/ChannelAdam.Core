@@ -17,7 +17,8 @@
 
 namespace ChannelAdam.Core.Reflection
 {
-    using System.Diagnostics;
+    using ChannelAdam.Core.Xml;
+
     using System.IO;
     using System.Reflection;
     using System.Xml.Serialization;
@@ -67,16 +68,9 @@ namespace ChannelAdam.Core.Reflection
         {
             using (var stream = GetAsStream(assembly, xmlResourceName))
             {
-                var xmlSerialiser = new XmlSerializer(typeof(T));
-                xmlSerialiser.UnknownAttribute += xmlSerialiser_UnknownAttribute;
-                xmlSerialiser.UnknownElement += xmlSerialiser_UnknownElement;
-                xmlSerialiser.UnknownNode += xmlSerialiser_UnknownNode;
-                xmlSerialiser.UnreferencedObject += xmlSerialiser_UnreferencedObject;
-
-                return (T)xmlSerialiser.Deserialize(stream);
+                return stream.DeserialiseFromXml<T>();
             }
         }
-
 
         /// <summary>
         /// Deserialises the given type from the embedded XML resource.
@@ -84,40 +78,30 @@ namespace ChannelAdam.Core.Reflection
         /// <typeparam name="T"></typeparam>
         /// <param name="assembly">The assembly that is storing the embedded resource.</param>
         /// <param name="xmlResourceName">Name of the XML embedded resource.</param>
-        /// <param name="xmlAttributeSerialisationOverrides">XML attribute overrides for deserialisation.</param>
+        /// <param name="xmlRootAttribute">XML root attribute override for deserialisation.</param>
         /// <returns></returns>
-        public static T DeserialiseFromXmlResource<T>(Assembly assembly, string xmlResourceName, XmlAttributeOverrides xmlAttributeSerialisationOverrides)
+        public static T DeserialiseFromXmlResource<T>(Assembly assembly, string xmlResourceName, XmlRootAttribute xmlRootAttribute)
         {
             using (var stream = GetAsStream(assembly, xmlResourceName))
             {
-                var xmlSerialiser = new XmlSerializer(typeof(T), xmlAttributeSerialisationOverrides);
-                xmlSerialiser.UnknownAttribute += xmlSerialiser_UnknownAttribute;
-                xmlSerialiser.UnknownElement += xmlSerialiser_UnknownElement;
-                xmlSerialiser.UnknownNode += xmlSerialiser_UnknownNode;
-                xmlSerialiser.UnreferencedObject += xmlSerialiser_UnreferencedObject;
-
-                return (T)xmlSerialiser.Deserialize(stream);
+                return stream.DeserialiseFromXml<T>(xmlRootAttribute);
             }
         }
 
-        private static void xmlSerialiser_UnreferencedObject(object sender, UnreferencedObjectEventArgs e)
+        /// <summary>
+        /// Deserialises the given type from the embedded XML resource.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="assembly">The assembly that is storing the embedded resource.</param>
+        /// <param name="xmlResourceName">Name of the XML embedded resource.</param>
+        /// <param name="xmlAttributeOverrides">XML attribute overrides for deserialisation.</param>
+        /// <returns></returns>
+        public static T DeserialiseFromXmlResource<T>(Assembly assembly, string xmlResourceName, XmlAttributeOverrides xmlAttributeOverrides)
         {
-            Trace.WriteLine($"XmlSerialiser Error - Unreferenced Object - Id:{e.UnreferencedId}");
-        }
-
-        private static void xmlSerialiser_UnknownNode(object sender, XmlNodeEventArgs e)
-        {
-            Trace.WriteLine($"XmlSerialiser Error - Unknown Node - LineNumber:{e.LineNumber}, LinePosition:{e.LinePosition}, Namespace:'{e.NamespaceURI}', Name:'{e.Name}', Text:'{e.Text}'");
-        }
-
-        private static void xmlSerialiser_UnknownElement(object sender, XmlElementEventArgs e)
-        {
-            Trace.WriteLine($"XmlSerialiser Error - Unknown Element - LineNumber:{e.LineNumber}, LinePosition:{e.LinePosition}, Namespace:'{e.Element.NamespaceURI}', Name:'{e.Element.Name}', Expected:'{e.ExpectedElements}'");
-        }
-
-        private static void xmlSerialiser_UnknownAttribute(object sender, XmlAttributeEventArgs e)
-        {
-            Trace.WriteLine($"XmlSerialiser Error - Unknown Attribute - LineNumber:{e.LineNumber}, LinePosition:{e.LinePosition}, Namespace:'{e.Attr.NamespaceURI}', Name:'{e.Attr.Name}', Expected:'{e.ExpectedAttributes}'");
+            using (var stream = GetAsStream(assembly, xmlResourceName))
+            {
+                return stream.DeserialiseFromXml<T>(xmlAttributeOverrides);
+            }
         }
     }
 }
