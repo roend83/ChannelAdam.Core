@@ -18,10 +18,6 @@
 namespace ChannelAdam.Logging
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// Writes a message out to the Console with a date/time prefix.
@@ -35,7 +31,7 @@ namespace ChannelAdam.Logging
         /// <param name="arguments">The argument list for the message format.</param>
         public void Log(string messageFormat, params object[] arguments)
         {
-            Console.WriteLine(GetMessagePrefix() + messageFormat, arguments); 
+            Console.WriteLine(GetMessagePrefix() + messageFormat, arguments);
         }
 
          /// <summary>

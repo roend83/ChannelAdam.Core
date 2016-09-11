@@ -9,3 +9,7 @@
 *.suo
 /src/ChannelAdam.Core/StyleCop.Cache
 /src/ChannelAdam.Core/ChannelAdam.Core.csproj.user
+/src/ChannelAdam.Core.BehaviourSpecs/bin/Debug
+/src/ChannelAdam.Core.BehaviourSpecs/obj/Debug
+/src/ChannelAdam.Core.BehaviourSpecs/ChannelAdam.Core.BehaviourSpecs.csproj.user
+/src/ChannelAdam.Core/TransientFaultHandling.csproj.user

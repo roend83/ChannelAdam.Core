@@ -81,6 +81,7 @@
     <Compile Include="Logging\ISimpleLogger.cs" />
     <Compile Include="Logging\SimpleConsoleLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reflection\EmbeddedResource.cs" />
     <Compile Include="TransientFaultHandling\IRetryPolicyAction.cs" />
     <Compile Include="TransientFaultHandling\IRetryPolicyFunctionAsync.cs" />
     <Compile Include="TransientFaultHandling\IRetryPolicyActionAsync.cs" />
