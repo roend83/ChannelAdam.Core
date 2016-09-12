@@ -15,12 +15,12 @@
 // limitations under the License.
 //-----------------------------------------------------------------------
 
-using System.Diagnostics;
-using System.IO;
-using System.Xml.Serialization;
-
 namespace ChannelAdam.Core.Xml
 {
+    using System.Diagnostics;
+    using System.IO;
+    using System.Xml.Serialization;
+
     public static class XmlSerialisationExtensions
     {
         #region Public Methods
@@ -94,10 +94,10 @@ namespace ChannelAdam.Core.Xml
 
         private static T DeserialiseFromXml<T>(XmlSerializer xmlSerialiser, string xml)
         {
-            xmlSerialiser.UnknownAttribute += xmlSerialiser_UnknownAttribute;
-            xmlSerialiser.UnknownElement += xmlSerialiser_UnknownElement;
-            xmlSerialiser.UnknownNode += xmlSerialiser_UnknownNode;
-            xmlSerialiser.UnreferencedObject += xmlSerialiser_UnreferencedObject;
+            xmlSerialiser.UnknownAttribute += XmlSerialiser_UnknownAttribute;
+            xmlSerialiser.UnknownElement += XmlSerialiser_UnknownElement;
+            xmlSerialiser.UnknownNode += XmlSerialiser_UnknownNode;
+            xmlSerialiser.UnreferencedObject += XmlSerialiser_UnreferencedObject;
 
             try
             {
@@ -108,19 +108,19 @@ namespace ChannelAdam.Core.Xml
             }
             finally
             {
-                xmlSerialiser.UnknownAttribute -= xmlSerialiser_UnknownAttribute;
-                xmlSerialiser.UnknownElement -= xmlSerialiser_UnknownElement;
-                xmlSerialiser.UnknownNode -= xmlSerialiser_UnknownNode;
-                xmlSerialiser.UnreferencedObject -= xmlSerialiser_UnreferencedObject;
+                xmlSerialiser.UnknownAttribute -= XmlSerialiser_UnknownAttribute;
+                xmlSerialiser.UnknownElement -= XmlSerialiser_UnknownElement;
+                xmlSerialiser.UnknownNode -= XmlSerialiser_UnknownNode;
+                xmlSerialiser.UnreferencedObject -= XmlSerialiser_UnreferencedObject;
             }
         }
 
         private static T DeserialiseFromXml<T>(XmlSerializer xmlSerialiser, Stream toDeserialise)
         {
-            xmlSerialiser.UnknownAttribute += xmlSerialiser_UnknownAttribute;
-            xmlSerialiser.UnknownElement += xmlSerialiser_UnknownElement;
-            xmlSerialiser.UnknownNode += xmlSerialiser_UnknownNode;
-            xmlSerialiser.UnreferencedObject += xmlSerialiser_UnreferencedObject;
+            xmlSerialiser.UnknownAttribute += XmlSerialiser_UnknownAttribute;
+            xmlSerialiser.UnknownElement += XmlSerialiser_UnknownElement;
+            xmlSerialiser.UnknownNode += XmlSerialiser_UnknownNode;
+            xmlSerialiser.UnreferencedObject += XmlSerialiser_UnreferencedObject;
 
             try
             {
@@ -128,29 +128,29 @@ namespace ChannelAdam.Core.Xml
             }
             finally
             {
-                xmlSerialiser.UnknownAttribute -= xmlSerialiser_UnknownAttribute;
-                xmlSerialiser.UnknownElement -= xmlSerialiser_UnknownElement;
-                xmlSerialiser.UnknownNode -= xmlSerialiser_UnknownNode;
-                xmlSerialiser.UnreferencedObject -= xmlSerialiser_UnreferencedObject;
+                xmlSerialiser.UnknownAttribute -= XmlSerialiser_UnknownAttribute;
+                xmlSerialiser.UnknownElement -= XmlSerialiser_UnknownElement;
+                xmlSerialiser.UnknownNode -= XmlSerialiser_UnknownNode;
+                xmlSerialiser.UnreferencedObject -= XmlSerialiser_UnreferencedObject;
             }
         }
 
-        private static void xmlSerialiser_UnreferencedObject(object sender, UnreferencedObjectEventArgs e)
+        private static void XmlSerialiser_UnreferencedObject(object sender, UnreferencedObjectEventArgs e)
         {
             Trace.WriteLine($"XmlSerialiser Error - Unreferenced Object - Id:{e.UnreferencedId}");
         }
 
-        private static void xmlSerialiser_UnknownNode(object sender, XmlNodeEventArgs e)
+        private static void XmlSerialiser_UnknownNode(object sender, XmlNodeEventArgs e)
         {
             Trace.WriteLine($"XmlSerialiser Error - Unknown Node - LineNumber:{e.LineNumber}, LinePosition:{e.LinePosition}, Namespace:'{e.NamespaceURI}', Name:'{e.Name}', Text:'{e.Text}'");
         }
 
-        private static void xmlSerialiser_UnknownElement(object sender, XmlElementEventArgs e)
+        private static void XmlSerialiser_UnknownElement(object sender, XmlElementEventArgs e)
         {
             Trace.WriteLine($"XmlSerialiser Error - Unknown Element - LineNumber:{e.LineNumber}, LinePosition:{e.LinePosition}, Namespace:'{e.Element.NamespaceURI}', Name:'{e.Element.Name}', Expected:'{e.ExpectedElements}'");
         }
 
-        private static void xmlSerialiser_UnknownAttribute(object sender, XmlAttributeEventArgs e)
+        private static void XmlSerialiser_UnknownAttribute(object sender, XmlAttributeEventArgs e)
         {
             Trace.WriteLine($"XmlSerialiser Error - Unknown Attribute - LineNumber:{e.LineNumber}, LinePosition:{e.LinePosition}, Namespace:'{e.Attr.NamespaceURI}', Name:'{e.Attr.Name}', Expected:'{e.ExpectedAttributes}'");
         }

@@ -17,12 +17,13 @@
 
 namespace ChannelAdam.Core.Reflection
 {
-    using ChannelAdam.Core.Xml;
-
+    using System;
     using System.IO;
     using System.Reflection;
     using System.Xml.Linq;
     using System.Xml.Serialization;
+
+    using ChannelAdam.Core.Xml;
 
     public static class EmbeddedResource
     {
@@ -31,12 +32,20 @@ namespace ChannelAdam.Core.Reflection
         /// </summary>
         /// <param name="assembly">The assembly.</param>
         /// <param name="resourceName">Name of the resource.</param>
-        /// <returns></returns>
-        /// <remarks>Ensure that you dispose of the stream appropriately!</remarks>
+        /// <returns>The embedded resource as a stream.</returns>
+        /// <remarks>Ensure that you dispose of the stream appropriately.</remarks>
         public static Stream GetAsStream(Assembly assembly, string resourceName)
         {
+            if (assembly == null)
+            {
+                throw new ArgumentNullException(nameof(assembly));
+            }
+
             var stream = assembly.GetManifestResourceStream(resourceName);
-            if (stream == null) throw new System.IO.FileNotFoundException($"Cannot find the embedded resource '{resourceName}' in assembly '{assembly.FullName}'.");
+            if (stream == null)
+            {
+                throw new System.IO.FileNotFoundException($"Cannot find the embedded resource '{resourceName}' in assembly '{assembly.FullName}'.");
+            }
 
             return stream;
         }
@@ -46,14 +55,24 @@ namespace ChannelAdam.Core.Reflection
         /// </summary>
         /// <param name="assembly">The assembly.</param>
         /// <param name="resourceName">Name of the resource.</param>
-        /// <returns></returns>
+        /// <returns>The embedded resource as a string.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification = "Correctly implemented as per guidance.")]
         public static string GetAsString(Assembly assembly, string resourceName)
         {
-            using (var stream = GetAsStream(assembly, resourceName))
+            Stream stream = null;
+            try
             {
+                stream = GetAsStream(assembly, resourceName);
                 using (var reader = new StreamReader(stream))
                 {
                     return reader.ReadToEnd();
+                }
+            }
+            finally
+            {
+                if (stream != null)
+                {
+                    stream.Dispose();
                 }
             }
         }
@@ -72,10 +91,10 @@ namespace ChannelAdam.Core.Reflection
         /// <summary>
         /// Deserialises the given type from the embedded XML resource.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">The type to deserialise the XML into.</typeparam>
         /// <param name="assembly">The assembly that is storing the embedded resource.</param>
         /// <param name="xmlResourceName">Name of the embedded XML resource.</param>
-        /// <returns></returns>
+        /// <returns>The deserialised object.</returns>
         public static T DeserialiseFromXmlResource<T>(Assembly assembly, string xmlResourceName)
         {
             using (var stream = GetAsStream(assembly, xmlResourceName))
@@ -87,11 +106,11 @@ namespace ChannelAdam.Core.Reflection
         /// <summary>
         /// Deserialises the given type from the embedded XML resource.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">The type to deserialise the XML into.</typeparam>
         /// <param name="assembly">The assembly that is storing the embedded resource.</param>
         /// <param name="xmlResourceName">Name of the XML embedded resource.</param>
         /// <param name="xmlRootAttribute">XML root attribute override for deserialisation.</param>
-        /// <returns></returns>
+        /// <returns>The deserialised object.</returns>
         public static T DeserialiseFromXmlResource<T>(Assembly assembly, string xmlResourceName, XmlRootAttribute xmlRootAttribute)
         {
             using (var stream = GetAsStream(assembly, xmlResourceName))
@@ -103,11 +122,11 @@ namespace ChannelAdam.Core.Reflection
         /// <summary>
         /// Deserialises the given type from the embedded XML resource.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">The type to deserialise the XML into.</typeparam>
         /// <param name="assembly">The assembly that is storing the embedded resource.</param>
         /// <param name="xmlResourceName">Name of the XML embedded resource.</param>
         /// <param name="xmlAttributeOverrides">XML attribute overrides for deserialisation.</param>
-        /// <returns></returns>
+        /// <returns>The deserialised object.</returns>
         public static T DeserialiseFromXmlResource<T>(Assembly assembly, string xmlResourceName, XmlAttributeOverrides xmlAttributeOverrides)
         {
             using (var stream = GetAsStream(assembly, xmlResourceName))

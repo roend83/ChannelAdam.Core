@@ -17,8 +17,10 @@
 
 namespace ChannelAdam.Core.Xml
 {
+    using System;
     using System.Xml;
     using System.Xml.Linq;
+    using System.Xml.Serialization;
 
     public static class XmlConversionExtensions
     {
@@ -27,18 +29,31 @@ namespace ChannelAdam.Core.Xml
             return XElement.Parse(xml);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes", MessageId = "System.Xml.XmlNode", Justification = "As designed")]
         public static XElement ToXElement(this XmlNode node)
         {
+            if (node == null)
+            {
+                throw new ArgumentNullException(nameof(node));
+            }
+
             return XElement.Parse(node.OuterXml);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes", MessageId = "System.Xml.XmlNode", Justification = "As designed")]
         public static XmlNode ToXmlNode(this XElement element)
         {
+            if (element == null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
             var xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(element.ToString());
             return xmlDoc.DocumentElement;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes", MessageId = "System.Xml.XmlNode", Justification = "As designed")]
         public static XmlNode ToXmlNode(this string xml)
         {
             var xmlDoc = new XmlDocument();
@@ -46,10 +61,27 @@ namespace ChannelAdam.Core.Xml
             return xmlDoc.DocumentElement;
         }
 
-        public static XmlDocument ToXmlDocument<T>(this T objectToSerialise)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes", MessageId = "System.Xml.XmlNode", Justification = "As designed")]
+        public static XmlDocument ToXmlDocument<T>(this T valueToSerialise)
         {
             var xmlDoc = new XmlDocument();
-            xmlDoc.LoadXml(objectToSerialise.SerialiseToXml());
+            xmlDoc.LoadXml(valueToSerialise.SerialiseToXml());
+            return xmlDoc;
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes", MessageId = "System.Xml.XmlNode", Justification = "As designed")]
+        public static XmlDocument ToXmlDocument<T>(this T valueToSerialise, XmlRootAttribute xmlRootAttribute)
+        {
+            var xmlDoc = new XmlDocument();
+            xmlDoc.LoadXml(valueToSerialise.SerialiseToXml(xmlRootAttribute));
+            return xmlDoc;
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes", MessageId = "System.Xml.XmlNode", Justification = "As designed")]
+        public static XmlDocument ToXmlDocument<T>(this T valueToSerialise, XmlAttributeOverrides xmlAttributeOverrides)
+        {
+            var xmlDoc = new XmlDocument();
+            xmlDoc.LoadXml(valueToSerialise.SerialiseToXml(xmlAttributeOverrides));
             return xmlDoc;
         }
     }
