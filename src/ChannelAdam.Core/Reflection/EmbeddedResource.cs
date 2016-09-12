@@ -21,6 +21,7 @@ namespace ChannelAdam.Core.Reflection
 
     using System.IO;
     using System.Reflection;
+    using System.Xml.Linq;
     using System.Xml.Serialization;
 
     public static class EmbeddedResource
@@ -55,6 +56,17 @@ namespace ChannelAdam.Core.Reflection
                     return reader.ReadToEnd();
                 }
             }
+        }
+
+        /// <summary>
+        /// Gets the XML resource as an XElement.
+        /// </summary>
+        /// <param name="assembly">The assembly.</param>
+        /// <param name="resourceName">Name of the resource.</param>
+        /// <returns>The XML resource as an XElement.</returns>
+        public static XElement GetXmlResourceAsXElement(Assembly assembly, string resourceName)
+        {
+            return GetAsString(assembly, resourceName).ToXElement();
         }
 
         /// <summary>

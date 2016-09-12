@@ -34,23 +34,23 @@ namespace ChannelAdam.Core.Xml
 
         public static XmlNode ToXmlNode(this XElement element)
         {
-            XmlDocument xmlDoc = new XmlDocument();
+            var xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(element.ToString());
             return xmlDoc.DocumentElement;
         }
 
         public static XmlNode ToXmlNode(this string xml)
         {
-            XmlDocument xmlDoc = new XmlDocument();
+            var xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(xml);
             return xmlDoc.DocumentElement;
         }
 
         public static XmlDocument ToXmlDocument<T>(this T objectToSerialise)
         {
-            var xmldoc = new XmlDocument();
-            xmldoc.LoadXml(objectToSerialise.SerialiseToXml());
-            return xmldoc;
+            var xmlDoc = new XmlDocument();
+            xmlDoc.LoadXml(objectToSerialise.SerialiseToXml());
+            return xmlDoc;
         }
     }
 }
