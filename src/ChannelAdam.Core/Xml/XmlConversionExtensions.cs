@@ -41,15 +41,15 @@ namespace ChannelAdam.Core.Xml
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes", MessageId = "System.Xml.XmlNode", Justification = "As designed")]
-        public static XmlNode ToXmlNode(this XElement element)
+        public static XmlNode ToXmlNode(this XNode node)
         {
-            if (element == null)
+            if (node == null)
             {
-                throw new ArgumentNullException(nameof(element));
+                throw new ArgumentNullException(nameof(node));
             }
 
             var xmlDoc = new XmlDocument();
-            xmlDoc.LoadXml(element.ToString());
+            xmlDoc.LoadXml(node.ToString());
             return xmlDoc.DocumentElement;
         }
 
