@@ -94,6 +94,7 @@
     <Compile Include="Runtime\Remoting\Proxies\DisposableRealProxy{TTypeToProxy}.cs" />
     <Compile Include="Xml\XmlConversionExtensions.cs" />
     <Compile Include="Xml\XmlSerialisationExtensions.cs" />
+    <Compile Include="Xml\XmlValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ChannelAdam.Core.nuspec" />
