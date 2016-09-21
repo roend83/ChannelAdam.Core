@@ -1,8 +1,4 @@
 ﻿//-----------------------------------------------------------------------
-// This code originally came from
-// https://channeladamcore.codeplex.com/SourceControl/latest#src/ChannelAdam.Core/Xml/XmlValidator.cs
-// and has been modified.
-//
 // <copyright file="XmlValidator.cs">
 //     Copyright (c) 2016 Adam Craven. All rights reserved.
 // </copyright>
