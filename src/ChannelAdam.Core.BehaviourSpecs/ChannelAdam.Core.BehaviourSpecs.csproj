@@ -68,6 +68,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Commanding.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Commanding.feature</DependentUpon>
+    </Compile>
+    <Compile Include="CommandingUnitSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Retrying.feature.cs">
       <AutoGen>True</AutoGen>
@@ -82,6 +88,10 @@
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Commanding.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Commanding.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="Retrying.feature">

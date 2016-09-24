@@ -70,6 +70,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\Abstractions\ICommandFunction.cs" />
+    <Compile Include="Commands\Abstractions\IReversibleCommand.cs" />
+    <Compile Include="Commands\Abstractions\IReversibleCommandFunction.cs" />
+    <Compile Include="Commands\Abstractions\ICommand.cs" />
+    <Compile Include="Commands\CommandFunctionBase.cs" />
+    <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\ReversibleCommandFunctionBase.cs" />
+    <Compile Include="Commands\ReversibleCommandManager.cs" />
+    <Compile Include="Commands\ReversibleCommandManagerExtensions.cs" />
+    <Compile Include="Commands\ReversibleSetPropertyCommand.cs" />
+    <Compile Include="Commands\SetPropertyCommand.cs" />
+    <Compile Include="Commands\ReversibleCommandBase.cs" />
     <Compile Include="Disposable.cs" />
     <Compile Include="DisposableWithDestructor.cs" />
     <Compile Include="DisposingEventArgs.cs" />
