@@ -15,7 +15,7 @@
 // limitations under the License.
 //-----------------------------------------------------------------------
 
-namespace ChannelAdam.Core.Commands.Abstractions
+namespace ChannelAdam.Commands.Abstractions
 {
     public interface ICommand
     {

@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>ChannelAdam.Core</id>
-    <version>1.3.6</version>
+    <version>1.4.0</version>
     <title>ChannelAdam Core Library</title>
     <authors>Adam Craven</authors>
     <owners>Adam Craven</owners>
@@ -12,6 +12,7 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>A core library that provides helpful functionality including base classes for disposables and finalizers, weak events, proxies, support for retry policies, XML conversion/serialisation and embedded resources.</description>
     <releaseNotes>
+1.4.0 - Corrected namespaces. Removed "Core" from the namespaces of the Xml, Comamnds and Reflection classes.
 1.3.6 - Added command and reversible command pattern.
 1.3.5 - Add XmlValidator for validating XML against XML Schemas.
 1.3.4 - Minor change of ToXmlNode() to use base class of XNode instead of XElement.
@@ -25,7 +26,7 @@
 1.0.0 - Initial release targeting .NET Framework 4.5.
     </releaseNotes>
     <copyright>Copyright 2014-2016 Adam Craven</copyright>
-    <tags>Disposable WeakEvent RealProxy Retry XML</tags>
+    <tags>Disposable WeakEvent RealProxy Retry XML Commands</tags>
   </metadata>
   <files>
     <file src="bin\Release\**\ChannelAdam.Core.dll" target="lib" />

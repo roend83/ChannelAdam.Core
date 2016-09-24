@@ -15,7 +15,7 @@
 // limitations under the License.
 //-----------------------------------------------------------------------
 
-namespace ChannelAdam.Core.Xml
+namespace ChannelAdam.Xml
 {
     using System.Diagnostics;
     using System.IO;

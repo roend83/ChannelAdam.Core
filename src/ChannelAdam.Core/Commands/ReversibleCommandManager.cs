@@ -15,7 +15,7 @@
 // limitations under the License.
 //-----------------------------------------------------------------------
 
-namespace ChannelAdam.Core.Commands
+namespace ChannelAdam.Commands
 {
     using System;
     using System.Collections.Concurrent;

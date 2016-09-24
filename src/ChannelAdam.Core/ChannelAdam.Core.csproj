@@ -7,7 +7,7 @@
     <ProjectGuid>{23631040-C054-4F36-B00F-0A827FC5382E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ChannelAdam.Core</RootNamespace>
+    <RootNamespace>ChannelAdam</RootNamespace>
     <AssemblyName>ChannelAdam.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

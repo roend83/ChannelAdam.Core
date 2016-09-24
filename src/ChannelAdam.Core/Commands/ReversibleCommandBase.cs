@@ -15,9 +15,9 @@
 // limitations under the License.
 //-----------------------------------------------------------------------
 
-namespace ChannelAdam.Core.Commands
+namespace ChannelAdam.Commands
 {
-    using ChannelAdam.Core.Commands.Abstractions;
+    using ChannelAdam.Commands.Abstractions;
 
     public abstract class ReversibleCommandBase : CommandBase, IReversibleCommand
     {

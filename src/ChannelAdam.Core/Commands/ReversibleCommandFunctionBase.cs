@@ -15,11 +15,11 @@
 // limitations under the License.
 //-----------------------------------------------------------------------
 
-namespace ChannelAdam.Core.Commands
+namespace ChannelAdam.Commands
 {
     using System;
 
-    using ChannelAdam.Core.Commands.Abstractions;
+    using ChannelAdam.Commands.Abstractions;
 
     public abstract class ReversibleCommandFunctionBase<TCommandResult> : CommandFunctionBase<TCommandResult>, IReversibleCommandFunction<TCommandResult>
     {

@@ -1,4 +1,4 @@
-﻿using ChannelAdam.Core.Commands;
+﻿using ChannelAdam.Commands;
 using ChannelAdam.TestFramework.MSTest;
 using TechTalk.SpecFlow;
 

@@ -15,7 +15,7 @@
 // limitations under the License.
 //-----------------------------------------------------------------------
 
-namespace ChannelAdam.Core.Reflection
+namespace ChannelAdam.Reflection
 {
     using System;
     using System.IO;
@@ -23,7 +23,7 @@ namespace ChannelAdam.Core.Reflection
     using System.Xml.Linq;
     using System.Xml.Serialization;
 
-    using ChannelAdam.Core.Xml;
+    using ChannelAdam.Xml;
 
     public static class EmbeddedResource
     {
