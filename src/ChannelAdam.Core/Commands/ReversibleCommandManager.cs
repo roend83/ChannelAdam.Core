@@ -30,6 +30,20 @@ namespace ChannelAdam.Commands
 
         #endregion Private Fields
 
+        #region Public Properties
+
+        public int CountOfCommandsToUndo
+        {
+            get { return this.undoCommandStack.Count; }
+        }
+
+        public bool HasCommandsToUndo
+        {
+            get { return this.undoCommandStack.Count > 0; }
+        }
+
+        #endregion Public Properties
+
         #region Public Methods
 
         public void Clear()
