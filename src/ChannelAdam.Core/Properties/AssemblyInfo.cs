@@ -17,7 +17,6 @@
 
 using System;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
@@ -28,7 +27,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("ChannelAdam.Core")]
-[assembly: AssemblyCopyright("Copyright © 2014-2015 Adam Craven")]
+[assembly: AssemblyCopyright("Copyright © 2014-2016 Adam Craven")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -53,5 +52,5 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]                  // Assembly strong name version
-[assembly: AssemblyFileVersion("1.2.1.0")]              // File version
-[assembly: AssemblyInformationalVersion("1.2.1")]       // NuGet package version / NuSpec $version$
+[assembly: AssemblyFileVersion("1.4.2.0")]              // File version
+[assembly: AssemblyInformationalVersion("1.4.2")]       // NuGet package version / NuSpec $version$
