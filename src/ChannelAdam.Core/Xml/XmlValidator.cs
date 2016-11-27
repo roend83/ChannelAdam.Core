@@ -399,7 +399,6 @@ namespace ChannelAdam.Xml
         /// <param name="xmlReaderSettings">The XML reader settings.</param>
         /// <returns>True if the given XML is valid.</returns>
         /// <exception cref="ArgumentNullException">If the xmlReaderSettings parameter is null.</exception>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification = "Correctly implemented as per guidance.")]
         public bool IsValidXml(string xml, XmlReaderSettings xmlReaderSettings)
         {
             if (xmlReaderSettings == null)
@@ -418,6 +417,7 @@ namespace ChannelAdam.Xml
 
                 using (var xmlReader = XmlReader.Create(textReader, xmlReaderSettings))
                 {
+                    textReader = null;
                     while (xmlReader.Read())
                     {
                     }

@@ -56,7 +56,6 @@ namespace ChannelAdam.Reflection
         /// <param name="assembly">The assembly.</param>
         /// <param name="resourceName">Name of the resource.</param>
         /// <returns>The embedded resource as a string.</returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification = "Correctly implemented as per guidance.")]
         public static string GetAsString(Assembly assembly, string resourceName)
         {
             Stream stream = null;
@@ -65,6 +64,7 @@ namespace ChannelAdam.Reflection
                 stream = GetAsStream(assembly, resourceName);
                 using (var reader = new StreamReader(stream))
                 {
+                    stream = null;
                     return reader.ReadToEnd();
                 }
             }
