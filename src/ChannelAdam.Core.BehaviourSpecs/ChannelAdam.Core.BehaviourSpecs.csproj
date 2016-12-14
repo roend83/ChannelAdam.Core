@@ -48,6 +48,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Xml" />
     <Reference Include="TechTalk.SpecFlow, Version=1.9.0.77, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
       <HintPath>..\packages\SpecFlow.1.9.0\lib\net35\TechTalk.SpecFlow.dll</HintPath>
       <Private>True</Private>
@@ -75,11 +76,18 @@
     </Compile>
     <Compile Include="CommandingUnitSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestDoubles\TestObjectForXmlStuff.cs" />
+    <Compile Include="XmlSerialisation.feature.cs">
+      <DependentUpon>XmlSerialisation.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Retrying.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Retrying.feature</DependentUpon>
     </Compile>
+    <Compile Include="XmlSerialisationUnitTestSteps.cs" />
     <Compile Include="RetryingUnitTestSteps.cs" />
     <Compile Include="TestDoubles\IFakeService.cs" />
     <Compile Include="TestDoubles\SimpleRetryPolicyFunction.cs" />
@@ -94,6 +102,10 @@
       <LastGenOutput>Commanding.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="XmlSerialisation.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>XmlSerialisation.feature.cs</LastGenOutput>
+    </None>
     <None Include="Retrying.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Retrying.feature.cs</LastGenOutput>
@@ -104,6 +116,16 @@
       <Project>{23631040-c054-4f36-b00f-0a827fc5382e}</Project>
       <Name>ChannelAdam.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\ExpectedXmlWithDefaultRoot.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\ExpectedXmlWithNewRoot.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

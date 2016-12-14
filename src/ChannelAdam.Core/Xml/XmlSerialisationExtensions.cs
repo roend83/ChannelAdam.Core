@@ -17,8 +17,11 @@
 
 namespace ChannelAdam.Xml
 {
+    using System;
     using System.Diagnostics;
     using System.IO;
+    using System.Text;
+    using System.Xml;
     using System.Xml.Serialization;
 
     public static class XmlSerialisationExtensions
@@ -27,20 +30,38 @@ namespace ChannelAdam.Xml
 
         public static string SerialiseToXml<T>(this T toSerialise)
         {
-            var xmlSerialiser = new XmlSerializer(toSerialise.GetType());
+            var xmlSerialiser = new XmlSerializer(typeof(T));
             return SerialiseToXml(xmlSerialiser, toSerialise);
         }
 
-        public static string SerialiseToXml<T>(this T toSerialise, XmlRootAttribute xmlRootAttribute)
+        public static string SerialiseToXml<T>(this T toSerialise, XmlWriterSettings settings)
         {
-            var xmlSerialiser = new XmlSerializer(toSerialise.GetType(), xmlRootAttribute);
-            return SerialiseToXml(xmlSerialiser, toSerialise);
+            var xmlSerialiser = new XmlSerializer(typeof(T));
+            return SerialiseToXml(xmlSerialiser, settings, toSerialise);
+        }
+
+        public static string SerialiseToXml<T>(this T toSerialise, XmlRootAttribute xmlRootAttributeOverride)
+        {
+            var xmlAttributeOverrides = CreateXmlAttributeOverrides(typeof(T), xmlRootAttributeOverride);
+            return SerialiseToXml(toSerialise, xmlAttributeOverrides);
+        }
+
+        public static string SerialiseToXml<T>(this T toSerialise, XmlRootAttribute xmlRootAttributeOverride, XmlWriterSettings settings)
+        {
+            var xmlAttributeOverrides = CreateXmlAttributeOverrides(typeof(T), xmlRootAttributeOverride);
+            return SerialiseToXml(toSerialise, xmlAttributeOverrides, settings);
         }
 
         public static string SerialiseToXml<T>(this T toSerialise, XmlAttributeOverrides xmlAttributeOverrides)
         {
-            var xmlSerialiser = new XmlSerializer(toSerialise.GetType(), xmlAttributeOverrides);
+            var xmlSerialiser = new XmlSerializer(typeof(T), xmlAttributeOverrides);
             return SerialiseToXml(xmlSerialiser, toSerialise);
+        }
+
+        public static string SerialiseToXml<T>(this T toSerialise, XmlAttributeOverrides xmlAttributeOverrides, XmlWriterSettings settings)
+        {
+            var xmlSerialiser = new XmlSerializer(typeof(T), xmlAttributeOverrides);
+            return SerialiseToXml(xmlSerialiser, settings, toSerialise);
         }
 
         public static T DeserialiseFromXml<T>(this string xml)
@@ -49,10 +70,10 @@ namespace ChannelAdam.Xml
             return DeserialiseFromXml<T>(xmlSerialiser, xml);
         }
 
-        public static T DeserialiseFromXml<T>(this string xml, XmlRootAttribute xmlRootAttribute)
+        public static T DeserialiseFromXml<T>(this string xml, XmlRootAttribute xmlRootAttributeOverride)
         {
-            var xmlSerialiser = new XmlSerializer(typeof(T), xmlRootAttribute);
-            return DeserialiseFromXml<T>(xmlSerialiser, xml);
+            var xmlAttributeOverrides = CreateXmlAttributeOverrides(typeof(T), xmlRootAttributeOverride);
+            return DeserialiseFromXml<T>(xml, xmlAttributeOverrides);
         }
 
         public static T DeserialiseFromXml<T>(this string xml, XmlAttributeOverrides xmlAttributeOverrides)
@@ -67,10 +88,10 @@ namespace ChannelAdam.Xml
             return DeserialiseFromXml<T>(xmlSerialiser, xmlStream);
         }
 
-        public static T DeserialiseFromXml<T>(this Stream xmlStream, XmlRootAttribute xmlRootAttribute)
+        public static T DeserialiseFromXml<T>(this Stream xmlStream, XmlRootAttribute xmlRootAttributeOverride)
         {
-            var xmlSerialiser = new XmlSerializer(typeof(T), xmlRootAttribute);
-            return DeserialiseFromXml<T>(xmlSerialiser, xmlStream);
+            var xmlAttributeOverrides = CreateXmlAttributeOverrides(typeof(T), xmlRootAttributeOverride);
+            return DeserialiseFromXml<T>(xmlStream, xmlAttributeOverrides);
         }
 
         public static T DeserialiseFromXml<T>(this Stream xmlStream, XmlAttributeOverrides xmlAttributeOverrides)
@@ -83,12 +104,31 @@ namespace ChannelAdam.Xml
 
         #region Private Methods
 
+        private static XmlAttributeOverrides CreateXmlAttributeOverrides(Type objectType, XmlRootAttribute newRootAttribute)
+        {
+            var xmlAttributeOverrides = new XmlAttributeOverrides();
+            var xmlAttributes = new XmlAttributes();
+            xmlAttributes.XmlRoot = newRootAttribute;
+            xmlAttributeOverrides.Add(objectType, xmlAttributes);
+            return xmlAttributeOverrides;
+        }
+
         private static string SerialiseToXml(XmlSerializer xmlSerialiser, object toSerialise)
         {
             using (var writer = new StringWriter())
             {
                 xmlSerialiser.Serialize(writer, toSerialise);
                 return writer.ToString();
+            }
+        }
+
+        private static string SerialiseToXml(XmlSerializer xmlSerialiser, XmlWriterSettings xmlWriterSettings, object toSerialise)
+        {
+            var sb = new StringBuilder();
+            using (var xmlWriter = XmlWriter.Create(sb, xmlWriterSettings))
+            {
+                xmlSerialiser.Serialize(xmlWriter, toSerialise);
+                return sb.ToString();
             }
         }
 
