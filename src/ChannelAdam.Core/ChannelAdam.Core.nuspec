@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>ChannelAdam.Core</id>
-    <version>1.5.0</version>
+    <version>1.5.1</version>
     <title>ChannelAdam Core Library</title>
     <authors>Adam Craven</authors>
     <owners>Adam Craven</owners>
@@ -12,6 +12,7 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>A core library that provides helpful functionality including base classes for disposables and finalizers, weak events, proxies, support for retry policies, XML conversion/serialisation and embedded resources.</description>
     <releaseNotes>
+1.5.1 - Made Disposable.isDisposing private variable volatile.
 1.5.0 - Added overloads to the XML serialisation extensions to allow specifying XmlWriterSettings. Fixed issue in XML serialisation when providing an XmlRootAttribute to align with the intent of overriding it for the entire XML message, instead of just replacing the root.
 1.4.2 - Corrected assembly version.
 1.4.1 - Added properties to ReversibleCommandManager.
@@ -28,7 +29,7 @@
 1.1.0 - Added support for targeting .NET Framework 4.0 in addition to .NET Framework 4.5.
 1.0.0 - Initial release targeting .NET Framework 4.5.
     </releaseNotes>
-    <copyright>Copyright 2014-2016 Adam Craven</copyright>
+    <copyright>Copyright 2014-2017 Adam Craven</copyright>
     <tags>Disposable WeakEvent RealProxy Retry XML Serialization Conversion Commands</tags>
   </metadata>
   <files>

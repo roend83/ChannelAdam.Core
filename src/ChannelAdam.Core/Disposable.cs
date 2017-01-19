@@ -1,6 +1,6 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="Disposable.cs">
-//     Copyright (c) 2014 Adam Craven. All rights reserved.
+//     Copyright (c) 2014-2017 Adam Craven. All rights reserved.
 // </copyright>
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -29,7 +29,7 @@ namespace ChannelAdam
     /// </remarks>
     public abstract class Disposable : IDisposable
     {
-        private bool isDisposed;
+        private volatile bool isDisposed;   // volatile because the Garbage Collector calls finalizers in a different thread
 
         #region Events
 
@@ -97,10 +97,7 @@ namespace ChannelAdam
         /// <param name="isDisposing">If set to <c>true</c> then the object is being disposed from a call to Dispose(); <c>false</c> if it is from a finalizer / destructor.</param>
         protected virtual void OnDisposing(bool isDisposing)
         {
-            if (this.Disposing != null)
-            {
-                this.Disposing(this, new DisposingEventArgs(isDisposing));
-            }
+            this.Disposing?.Invoke(this, new DisposingEventArgs(isDisposing));
         }
 
         /// <summary>
@@ -108,10 +105,7 @@ namespace ChannelAdam
         /// </summary>
         protected virtual void OnDisposed()
         {
-            if (this.Disposed != null)
-            {
-                this.Disposed(this, EventArgs.Empty);
-            }
+            this.Disposed?.Invoke(this, EventArgs.Empty);
         }
 
         #endregion Protected Virtual Methods

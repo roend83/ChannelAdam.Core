@@ -1,6 +1,6 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="AssemblyInfo.cs">
-//     Copyright (c) 2014-2016 Adam Craven. All rights reserved.
+//     Copyright (c) 2014-2017 Adam Craven. All rights reserved.
 // </copyright>
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("ChannelAdam.Core")]
-[assembly: AssemblyCopyright("Copyright © 2014-2016 Adam Craven")]
+[assembly: AssemblyCopyright("Copyright © 2014-2017 Adam Craven")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -52,5 +52,5 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]                  // Assembly strong name version
-[assembly: AssemblyFileVersion("1.5.0.0")]              // File version
-[assembly: AssemblyInformationalVersion("1.5.0")]       // NuGet package version / NuSpec $version$
+[assembly: AssemblyFileVersion("1.5.1.0")]              // File version
+[assembly: AssemblyInformationalVersion("1.5.1")]       // NuGet package version / NuSpec $version$

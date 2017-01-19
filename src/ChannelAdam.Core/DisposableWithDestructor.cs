@@ -1,6 +1,6 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="DisposableWithDestructor.cs">
-//     Copyright (c) 2014 Adam Craven. All rights reserved.
+//     Copyright (c) 2014-2017 Adam Craven. All rights reserved.
 // </copyright>
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -79,10 +79,7 @@ namespace ChannelAdam
         {
             try
             {
-                if (this.DestructorExceptionBehaviour != null)
-                {
-                    this.DestructorExceptionBehaviour(exception);
-                }
+                this.DestructorExceptionBehaviour?.Invoke(exception);
             }
             catch (Exception ex)
             {
