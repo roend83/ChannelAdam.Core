@@ -30,37 +30,37 @@ namespace ChannelAdam.Xml
 
         public static string SerialiseToXml<T>(this T toSerialise)
         {
-            var xmlSerialiser = new XmlSerializer(typeof(T));
+            var xmlSerialiser = new XmlSerializer(toSerialise.GetType());
             return SerialiseToXml(xmlSerialiser, toSerialise);
         }
 
         public static string SerialiseToXml<T>(this T toSerialise, XmlWriterSettings settings)
         {
-            var xmlSerialiser = new XmlSerializer(typeof(T));
+            var xmlSerialiser = new XmlSerializer(toSerialise.GetType());
             return SerialiseToXml(xmlSerialiser, settings, toSerialise);
         }
 
         public static string SerialiseToXml<T>(this T toSerialise, XmlRootAttribute xmlRootAttributeOverride)
         {
-            var xmlAttributeOverrides = CreateXmlAttributeOverrides(typeof(T), xmlRootAttributeOverride);
+            var xmlAttributeOverrides = CreateXmlAttributeOverrides(toSerialise.GetType(), xmlRootAttributeOverride);
             return SerialiseToXml(toSerialise, xmlAttributeOverrides);
         }
 
         public static string SerialiseToXml<T>(this T toSerialise, XmlRootAttribute xmlRootAttributeOverride, XmlWriterSettings settings)
         {
-            var xmlAttributeOverrides = CreateXmlAttributeOverrides(typeof(T), xmlRootAttributeOverride);
+            var xmlAttributeOverrides = CreateXmlAttributeOverrides(toSerialise.GetType(), xmlRootAttributeOverride);
             return SerialiseToXml(toSerialise, xmlAttributeOverrides, settings);
         }
 
         public static string SerialiseToXml<T>(this T toSerialise, XmlAttributeOverrides xmlAttributeOverrides)
         {
-            var xmlSerialiser = new XmlSerializer(typeof(T), xmlAttributeOverrides);
+            var xmlSerialiser = new XmlSerializer(toSerialise.GetType(), xmlAttributeOverrides);
             return SerialiseToXml(xmlSerialiser, toSerialise);
         }
 
         public static string SerialiseToXml<T>(this T toSerialise, XmlAttributeOverrides xmlAttributeOverrides, XmlWriterSettings settings)
         {
-            var xmlSerialiser = new XmlSerializer(typeof(T), xmlAttributeOverrides);
+            var xmlSerialiser = new XmlSerializer(toSerialise.GetType(), xmlAttributeOverrides);
             return SerialiseToXml(xmlSerialiser, settings, toSerialise);
         }
 

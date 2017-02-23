@@ -18,6 +18,10 @@ Given an object with a default XML root attribute
 When the object with a default XML root attribute is serialised with an override of the XML attributes
 Then the object is serialised correctly
 
+Scenario: Should correctly serialise an instance that has been cast as an object
+Given a test object
+When the instance cast as an object is serialised
+Then the object is serialised correctly
 
 ################################
 # Deserialisation

@@ -36,6 +36,7 @@ namespace ChannelAdam.Core.BehaviourSpecs
 
         #region Given
 
+        [Given(@"a test object")]
         [Given(@"an object with a default XML root attribute")]
         public void GivenAnObjectWithADefaultXMLRootAttribute()
         {
@@ -134,6 +135,17 @@ namespace ChannelAdam.Core.BehaviourSpecs
             this.testXmlObject = this.expectedXml.DeserialiseFromXml<TestObjectForXmlStuff>(attributeOverrides);
             this.actualXml = this.testXmlObject.SerialiseToXml(attributeOverrides);
             Logger.Log($"Actual re-serialised XML: {Environment.NewLine}" + this.actualXml);
+        }
+
+        [When(@"the instance cast as an object is serialised")]
+        public void WhenTheInstanceCastAsAnObjectIsSerialised()
+        {
+            this.expectedXml = this.testXmlObject.SerialiseToXml();
+            Logger.Log($"Expected XML: {Environment.NewLine}" + this.expectedXml);
+
+            object obj = this.testXmlObject;
+            this.actualXml = obj.SerialiseToXml();
+            Logger.Log($"Actual XML: {Environment.NewLine}" + this.actualXml);
         }
 
         #endregion

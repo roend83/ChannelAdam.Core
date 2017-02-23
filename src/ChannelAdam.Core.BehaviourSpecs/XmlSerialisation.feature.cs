@@ -126,21 +126,39 @@ testRunner.Then("the object is serialised correctly", ((string)(null)), ((TechTa
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Should correctly serialise an instance that has been cast as an object")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "XML Serialisation")]
+        public virtual void ShouldCorrectlySerialiseAnInstanceThatHasBeenCastAsAnObject()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Should correctly serialise an instance that has been cast as an object", ((string[])(null)));
+#line 21
+this.ScenarioSetup(scenarioInfo);
+#line 22
+testRunner.Given("a test object", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 23
+testRunner.When("the instance cast as an object is serialised", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 24
+testRunner.Then("the object is serialised correctly", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Should correctly deserialise an object - with no changes to the XML attributes")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "XML Serialisation")]
         public virtual void ShouldCorrectlyDeserialiseAnObject_WithNoChangesToTheXMLAttributes()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Should correctly deserialise an object - with no changes to the XML attributes", ((string[])(null)));
-#line 25
+#line 29
 this.ScenarioSetup(scenarioInfo);
-#line 26
+#line 30
 testRunner.Given("a class with a default XML root attribute", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 27
+#line 31
 testRunner.And("an XML string with the default XML root attribute", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 28
+#line 32
 testRunner.When("the XML string with the default XML root attribute is deserialised with no serial" +
                     "isation overrides", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 29
+#line 33
 testRunner.Then("the XML string is deserialised successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -152,17 +170,17 @@ testRunner.Then("the XML string is deserialised successfully", ((string)(null)),
         public virtual void ShouldCorrectlyDeserialiseAnObject_WhenOverridingTheXMLRootAttribute()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Should correctly deserialise an object - when overriding the XML root attribute", ((string[])(null)));
-#line 31
+#line 35
 this.ScenarioSetup(scenarioInfo);
-#line 32
+#line 36
 testRunner.Given("a class with a default XML root attribute", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 33
+#line 37
 testRunner.And("an XML string with a root attribute that is different from the default XML root a" +
                     "ttribute", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 34
+#line 38
 testRunner.When("the XML string with the different XML root attribute is deserialised with an over" +
                     "ride of the XML root attribute", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 35
+#line 39
 testRunner.Then("the XML string is deserialised successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -174,17 +192,17 @@ testRunner.Then("the XML string is deserialised successfully", ((string)(null)),
         public virtual void ShouldCorrectlyDeserialiseAnObject_WhenOverridingTheXMLAttributes()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Should correctly deserialise an object - when overriding the XML attributes", ((string[])(null)));
-#line 37
+#line 41
 this.ScenarioSetup(scenarioInfo);
-#line 38
+#line 42
 testRunner.Given("a class with a default XML root attribute", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 39
+#line 43
 testRunner.And("an XML string with a root attribute that is different from the default XML root a" +
                     "ttribute", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 40
+#line 44
 testRunner.When("the XML string with the different XML root attribute is deserialised with an over" +
                     "ride of the XML attributes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 41
+#line 45
 testRunner.Then("the XML string is deserialised successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
