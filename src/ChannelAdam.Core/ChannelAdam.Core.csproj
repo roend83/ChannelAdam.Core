@@ -90,6 +90,7 @@
     <Compile Include="Events\WeakEvent.cs" />
     <Compile Include="Events\Internal\WeakEventSubscription.cs" />
     <Compile Include="Events\Internal\WeakEventSubscriptionFactory.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="IDestructorExceptionBehaviour.cs" />
     <Compile Include="Logging\ISimpleLogger.cs" />
     <Compile Include="Logging\SimpleConsoleLogger.cs" />

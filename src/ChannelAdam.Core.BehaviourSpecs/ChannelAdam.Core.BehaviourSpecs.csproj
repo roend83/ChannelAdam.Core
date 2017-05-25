@@ -76,6 +76,12 @@
     </Compile>
     <Compile Include="CommandingUnitSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringExtensions.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringExtensions.feature</DependentUpon>
+    </Compile>
+    <Compile Include="StringExtensionsUnitSteps.cs" />
     <Compile Include="TestDoubles\TestObjectForXmlStuff.cs" />
     <Compile Include="XmlSerialisation.feature.cs">
       <DependentUpon>XmlSerialisation.feature</DependentUpon>
@@ -102,6 +108,10 @@
       <LastGenOutput>Commanding.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="StringExtensions.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>StringExtensions.feature.cs</LastGenOutput>
+    </None>
     <None Include="XmlSerialisation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>XmlSerialisation.feature.cs</LastGenOutput>
