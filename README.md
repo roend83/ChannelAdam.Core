@@ -6,4 +6,4 @@ Download the "ChannelAdam Core Library" NuGet package - https://www.nuget.org/pa
 
 Proudly presented to the open source community by Adam Craven (@ChannelAdam).
 
-Please see my blog at https://DevZone.ChannelAdam.com
+Please see the reference documentation at https://devzone.channeladam.com/library/channeladam-core/
