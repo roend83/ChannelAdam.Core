@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>ChannelAdam.Core</id>
-    <version>1.6.0</version>
+    <version>1.6.1</version>
     <title>ChannelAdam Core Library</title>
     <authors>Adam Craven</authors>
     <owners>Adam Craven</owners>
@@ -12,6 +12,17 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>A core library that provides helpful functionality including base classes for disposables and finalizers, weak events, proxies, support for retry policies, XML conversion/serialisation and embedded resources.</description>
     <releaseNotes>
+1.6.1 - THIS LIBRARY IS NOW DEPRECATED. 
+It has been replaced with the following .NET Standard libraries: 
+        - ChannelAdam.Commands
+        - ChannelAdam.DispatchProxies (DispatchProxy is used now instead of Remoting.Proxies.RealProxy)
+        - ChannelAdam.Disposing
+        - ChannelAdam.Logging
+        - ChannelAdam.PrimitiveExtensions (StringExtensions)
+        - ChannelAdam.Reflection
+        - ChannelAdam.TransientFaultHandling
+        - ChannelAdam.WeakEvents
+        - ChannelAdam.Xml
 1.6.0 - Added StringExtensions for converting named placeholders back to indexed placeholders - to be used by string.Format().
 1.5.2 - Fixed XML Serialisation extension issue - when serialising from an instance that has been cast as an object type.
 1.5.1 - Made Disposable.isDisposing private variable volatile.
@@ -31,7 +42,7 @@
 1.1.0 - Added support for targeting .NET Framework 4.0 in addition to .NET Framework 4.5.
 1.0.0 - Initial release targeting .NET Framework 4.5.
     </releaseNotes>
-    <copyright>Copyright 2014-2017 Adam Craven</copyright>
+    <copyright>Copyright 2014-2018 Adam Craven</copyright>
     <tags>Disposable WeakEvent RealProxy Retry XML Serialization Conversion Commands</tags>
   </metadata>
   <files>
