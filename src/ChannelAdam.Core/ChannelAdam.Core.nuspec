@@ -2,15 +2,15 @@
 <package>
   <metadata>
     <id>ChannelAdam.Core</id>
-    <version>1.6.1</version>
+    <version>1.6.2</version>
     <title>ChannelAdam Core Library</title>
     <authors>Adam Craven</authors>
     <owners>Adam Craven</owners>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
-    <projectUrl>https://channeladamcore.codeplex.com</projectUrl>
+    <projectUrl>https://github.com/channeladam/ChannelAdam.Core</projectUrl>
     <iconUrl>https://devzone.channeladam.com/img/channeladam/channeladam-logo.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <description>A core library that provides helpful functionality including base classes for disposables and finalizers, weak events, proxies, support for retry policies, XML conversion/serialisation and embedded resources.</description>
+    <description>DEPRECATED - see https://github.com/channeladam/ChannelAdam.Core/blob/master/README.md. A core library that provides helpful functionality including base classes for disposables and finalizers, weak events, proxies, support for retry policies, XML conversion/serialisation and embedded resources.</description>
     <releaseNotes>
 1.6.1 - THIS LIBRARY IS NOW DEPRECATED. 
 It has been replaced with the following .NET Standard libraries: 
