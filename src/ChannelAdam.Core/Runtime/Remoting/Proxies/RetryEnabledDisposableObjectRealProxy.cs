@@ -15,6 +15,8 @@
 // limitations under the License.
 //-----------------------------------------------------------------------
 
+using System.Reflection;
+
 namespace ChannelAdam.Runtime.Remoting.Proxies
 {
     using System;
@@ -53,21 +55,22 @@ namespace ChannelAdam.Runtime.Remoting.Proxies
         /// <summary>
         /// Invokes the method and returns the object to be returned to the caller of the proxy.
         /// </summary>
-        /// <param name="methodCallMessage">The method call message.</param>
+        /// <param name="methodInfo">The method to invoke.</param>
         /// <param name="onThis">The object on which to invoke the method.</param>
+        /// <param name="args">The arguments for the method.</param>
         /// <returns>The object to be returned to the caller of the proxy.</returns>
         /// <exception cref="System.InvalidCastException">The value of methodCallMessage.MethodBase cannot be cast to a MethodInfo.</exception>
-        protected override object InvokeMethod(IMethodCallMessage methodCallMessage, object onThis)
+        protected override object InvokeMethod(MethodBase methodInfo, object onThis, object[] args)
         {
             object result = null;
 
             if (this.retryPolicy != null)
             {
-                result = this.retryPolicy.Execute(() => base.InvokeMethod(methodCallMessage, onThis));
+                result = this.retryPolicy.Execute(() => base.InvokeMethod(methodInfo, onThis, args));
             }
             else
             {
-                result = base.InvokeMethod(methodCallMessage, onThis);
+                result = base.InvokeMethod(methodInfo, onThis, args);
             }
 
             return result;

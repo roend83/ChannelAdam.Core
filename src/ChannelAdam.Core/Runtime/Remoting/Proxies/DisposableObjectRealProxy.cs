@@ -44,24 +44,23 @@ namespace ChannelAdam.Runtime.Remoting.Proxies
         /// <summary>
         /// Invokes the method and returns the object to be returned to the caller of the proxy.
         /// </summary>
-        /// <param name="methodCallMessage">The method call message.</param>
+        /// <param name="methodInfo">The method to invoke.</param>
         /// <param name="onThis">The object on which to invoke the method.</param>
+        /// <param name="args">The arguments for the method.</param>
         /// <returns>The object to be returned to the caller of the proxy.</returns>
         /// <exception cref="System.InvalidCastException">The value of methodCallMessage.MethodBase cannot be cast to a MethodInfo.</exception>
-        protected override object InvokeMethod(IMethodCallMessage methodCallMessage, object onThis)
+        protected override object InvokeMethod(MethodBase methodInfo, object onThis, object[] args)
         {
             object result = null;
 
-            if (methodCallMessage == null)
+            if (methodInfo == null)
             {
-                throw new ArgumentNullException(nameof(methodCallMessage));
+                throw new ArgumentNullException(nameof(methodInfo));
             }
-
-            var methodInfo = (MethodInfo)methodCallMessage.MethodBase;
 
             try
             {
-                result = methodInfo.Invoke(onThis, methodCallMessage.InArgs);
+                result = methodInfo.Invoke(onThis, args);
             }
             catch (TargetInvocationException targetEx)
             {

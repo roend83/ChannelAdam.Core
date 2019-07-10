@@ -217,20 +217,21 @@ namespace ChannelAdam.Runtime.Remoting.Proxies
                 }
 
                 object result = null;
+                var args = methodCallMessage.Args;
 
                 if (methodCallMessage.MethodName == "Dispose")
                 {
-                    result = this.InvokeMethod(methodCallMessage, this);
+                    result = this.InvokeMethod(methodCallMessage.MethodBase, this, args);
                 }
                 else
                 {
-                    result = this.InvokeMethod(methodCallMessage, this.ProxiedObject);
+                    result = this.InvokeMethod(methodCallMessage.MethodBase, this.ProxiedObject, args);
                 }
 
                 returnMessage = new ReturnMessage(
                                 result,                                 // Operation result
-                                null,                                   // Out arguments
-                                0,                                      // Out arguments count
+                                args,                                   // Out arguments
+                                args.Length,                            // Out arguments count
                                 methodCallMessage.LogicalCallContext,   // Call context
                                 methodCallMessage);                     // Original message
             }
@@ -249,11 +250,12 @@ namespace ChannelAdam.Runtime.Remoting.Proxies
         /// <summary>
         /// Invokes the method and returns the object to be returned to the caller of the proxy.
         /// </summary>
-        /// <param name="methodCallMessage">The method call message.</param>
+        /// <param name="methodInfo">The method to invoke.</param>
         /// <param name="onThis">The object on which to invoke the method.</param>
+        /// <param name="args">The arguments for the method.</param>
         /// <returns>The object to be returned to the caller of the proxy.</returns>
         /// <exception cref="System.InvalidCastException">The value of methodCallMessage.MethodBase cannot be cast to a MethodInfo.</exception>
-        protected abstract object InvokeMethod(IMethodCallMessage methodCallMessage, object onThis);
+        protected abstract object InvokeMethod(MethodBase methodInfo, object onThis, object[] args);
 
         #endregion
 
